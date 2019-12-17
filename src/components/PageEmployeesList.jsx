@@ -13,25 +13,33 @@ class PageEmployeesList extends React.Component {
 
     this.state = { 
       isLoading: false,
+      count: 0,
     }
   }
 
   componentDidMount() {
+
+    const { firstLoaded } = this.props;
+    if(firstLoaded === true){
+      return;
+    }
+
     this.setState({ isLoading: true });
-    fetch('http://localhost:3004/employees')
-    .then((data) => data.json())
-    // Without Redux
-    // .then((employees) => this.setState({ employees, isLoading: false }));
-    // With Redux
-    .then((employees) => {
+      fetch('http://localhost:3004/employees')
+      .then((data) => data.json())
+      // Without Redux
+      // .then((employees) => this.setState({ employees, isLoading: false }));
+      // With Redux
+      .then((employees) => {
       this.props.employeesLoaded(employees);
       this.setState({ isLoading: false });
-    });
+      });  
+     
   }
 
   render() {
     const { isLoading } = this.state;
-    const { employees } = this.props;
+    const { employees, firstLoaded } = this.props;
 
     if(isLoading) {
       return <p>Loading ...</p>
@@ -39,7 +47,7 @@ class PageEmployeesList extends React.Component {
     
     return (
       <div>
-        <h1>Employees List:</h1>
+        <h1>Employees List: { firstLoaded }</h1>
         {employees && employees.map((employee => <EmployeeLine key={employee._id} employee={employee} />))}
         <Link to="/new">
           <button>Create employee</button>
@@ -51,7 +59,8 @@ class PageEmployeesList extends React.Component {
 
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
-    employees: state.employees
+    employees: state.employees,
+    firstLoaded: state.firstLoaded,
   }
 }
 
