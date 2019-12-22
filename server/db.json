@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "username": "john",
+      "full_name": "John Doe"
+    }
+  ],
+
   "employees": [
     {
       "_id": "5dc9bdc63d783442fbd22b38",

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import { loadEmployees } from '../redux/actions'
 
@@ -54,7 +55,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageEmployeesList)
+)(PageEmployeesList));
