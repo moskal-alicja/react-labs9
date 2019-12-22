@@ -29,7 +29,7 @@ const appReducer = (state = initialState, action) => {
     }
     case DATA_FETCHED_PROPERLY: {
       const { employees } = action.payload;
-      return Object.assign({}, state, { employees, isLoading: false, error: null });
+      return Object.assign({}, state, { employees, isLoading: false, error: null, firstLoaded: true });
     }
     case DATA_FETCHING_ERROR: {
       const { error } = action.payload;
