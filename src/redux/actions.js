@@ -1,6 +1,6 @@
 import { EMPLOYEES_LOADED, EMPLOYEE_ADDED } from './constants';
 import { LAUNCH_DATA_FETCHING, DATA_FETCHED_PROPERLY, DATA_FETCHING_ERROR } from './constants';
-
+import { LOGGED_IN_USER } from "./constants";
 
 export const employeesLoaded = (employees) => {
   return {
@@ -57,4 +57,13 @@ export const loadEmployees = () => {
       (error) => dispatch(dataFetchingError(error)),
     );
   };
+}
+
+export const loggedInUser = (user) => {
+  return {
+    type: LOGGED_IN_USER,
+    payload: {
+      user
+    }
+  }
 }
